@@ -1,0 +1,27 @@
+* Introduction
+** Basic concept of software carpentry
+** Overview of the topics
+** Explanation of how it works
+* The Unix Shell
+** The Unix filesystem
+*** Basic navigation and shell commands
+*** The man system
+*** Organising files
+*** Wildcard matching
+** Pipes, Filters
+*** Output redirection
+*** Piping output
+*** head, tail, wc, sort
+** Shell Scripts
+*** Variables
+*** Looping
+*** Creating pipelines
+** Finding files
+*** find and grep
+* Version Control and git
+**
+***
+**
+***
+**
+***
