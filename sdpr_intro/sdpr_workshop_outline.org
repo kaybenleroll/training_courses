@@ -25,3 +25,13 @@
 ***
 **
 ***
+* Programming and Probability
+** Introduction to Jupyter
+*** Setting up the Notebook
+*** Explanation of Markdown
+** MonteCarlo Simulation
+*** Calculating the value of pi
+*** Illustrating the Law of Large Numbers
+** Probability Principles
+*** Central Limit Theorem
+*** Conditional Probability

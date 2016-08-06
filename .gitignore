@@ -1,6 +1,8 @@
 .Rhistory
 .RData
 
-sc_intro/*.log
-sc_intro/*.aux
-sc_intro/*.tex
+*.log
+*.aux
+*.out
+*.tex
+*.pdf
