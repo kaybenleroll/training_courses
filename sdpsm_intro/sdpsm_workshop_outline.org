@@ -15,7 +15,7 @@
 ** Shell Scripts
 *** Variables
 *** Looping
-*** Creating pipelines
+*** Creating pipeline scripts
 ** Finding files
 *** find and grep
 * Version Control and git

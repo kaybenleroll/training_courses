@@ -27,38 +27,36 @@
   \vspace{3mm} \noindent
 }
 
-\title{Software Development Principles for Research - The Shell}
+\title{Software Development Principles for Statistical Modelling\\Principles of Probability with Python/R}
 \author{Mick Cooney\\mickcooney@gmail.com}
-\date{}
 
 \begin{document}
 
 \maketitle
 
 <<init, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, message=FALSE>>=
-opts_knit$set(root.dir = ".")
+opts_knit$set(root.dir = ".");
 
-opts_chunk$set(fig.path   = './')
-opts_chunk$set(fig.align  = 'center')
-opts_chunk$set(out.width  = '18cm')
-opts_chunk$set(out.height = '10cm')
+opts_chunk$set(fig.path = './');
+opts_chunk$set(fig.align = 'center');
+opts_chunk$set(out.width  = '18cm');
+opts_chunk$set(out.height = '10cm');
 
-opts_chunk$set(size = 'scriptsize')
+opts_chunk$set(size = 'scriptsize');
 
-require(data.table)
-require(ggplot2)
+require(data.table);
+require(ggplot2);
 
-set.seed(42)
+set.seed(42);
 @
-
 
 \noindent
 \begin{center}
-\url{https://www.github.com/kaybenleroll/training_courses}
+\url{https://www.github.com/kaybenleroll/training_courses}.
 \end{center}
 
 \noindent
-Code is available in the \texttt{sdpr\_intro} directory.
+Code is available in the \texttt{sdpsm\_intro} directory.
 
 \worksheetbreak
 Content in this workshop is based on the 'Software Carpentry' course:
@@ -66,9 +64,8 @@ Content in this workshop is based on the 'Software Carpentry' course:
 
 
 \pagebreak
-\worksheetsection{Shell Basics}
+\worksheetsection{Introduction}
 
-Here we talk about the Unix shell.
 
 
 

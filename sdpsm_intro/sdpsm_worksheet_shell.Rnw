@@ -1,0 +1,196 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+
+\newcounter{wssection}
+\newcounter{wsexercise}[wssection]
+
+
+\newcommand{\worksheetsection}[1]{
+  \vspace{10mm}
+  \stepcounter{wssection}
+  \noindent \Large \textbf{\thewssection. #1} \normalsize
+  \vspace{3mm}
+}
+
+
+\newcommand{\worksheetexercise}{
+  \stepcounter{wsexercise}
+  \vspace{5mm} \noindent \textbf{Exercise \thewssection.\thewsexercise \;}
+}
+
+\newcommand{\worksheetbreak} {
+  \vspace{3mm} \noindent
+}
+
+\title{Software Development Principles for Statistical Modelling\\The Shell}
+\author{Mick Cooney\\mickcooney@gmail.com}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+<<init, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, message=FALSE>>=
+opts_knit$set(root.dir = ".")
+
+opts_chunk$set(fig.path   = './')
+opts_chunk$set(fig.align  = 'center')
+opts_chunk$set(out.width  = '18cm')
+opts_chunk$set(out.height = '10cm')
+
+opts_chunk$set(size = 'scriptsize')
+
+require(data.table)
+require(ggplot2)
+
+set.seed(42)
+@
+
+
+\noindent
+\begin{center}
+\url{https://www.github.com/kaybenleroll/training_courses}
+\end{center}
+
+\noindent
+Code is available in the \texttt{sdpsm\_intro} directory.
+
+\worksheetbreak
+Content in this workshop is based on the 'Software Carpentry' course:
+\url{http://software-carpentry.org/}
+
+
+\pagebreak
+\worksheetsection{Shell Basics}
+
+\noindent
+In this part of the workshop we introduce the Unix shell and get
+familiar with filesystem navigation and manipulation.
+
+\worksheetbreak
+With these core concepts established, we move on to pipes, allowing
+the creation of filters and pipelines of work. This is part of the
+Unix philosophy of single-purpose utilities doing one job well.
+
+\worksheetbreak
+Finally, we extend the notion of this concept to shell scripts:
+mini-programs that allow the codifying of workflows and other
+commands.
+
+
+\worksheetexercise Use the shell to determine your current username
+and home directory.
+
+\worksheetexercise Get a list of all the files in the current
+directory using the \texttt{ls} command.
+
+\worksheetexercise Use the internal help/manual system to see what
+options are available for the \texttt{ls} command.
+
+\worksheetexercise Use tab-completion to navigate the file system.
+
+\worksheetexercise Using a text editor, create a small text file named
+\texttt{draft.txt} and write some text into it. Save the file in the
+directory.
+
+\worksheetexercise Delete the file \texttt{draft.txt}.
+
+\worksheetexercise Calculate the number of lines and words in the
+\texttt{data/} folder.
+
+\worksheetexercise Store the output of the word counts to a file
+\texttt{lengths.txt}
+
+\worksheetexercise Sort the entries of \texttt{lengths.txt} in an
+appropriate way and save the output to \texttt{sorted\_lengths.txt}
+
+
+\pagebreak
+\worksheetsection{Shell Pipes and Filters}
+
+\worksheetexercise Using a pipe (the \texttt{|} character), create a
+one-liner that outputs the file with the lowest number of lines in it.
+
+\worksheetexercise Using redirection (the \texttt{>} character),
+create a file called \texttt{lowest\_lines.txt} from the one-liner
+shell command you wrote.
+
+\worksheetexercise Output the contents of the \texttt{us\_states.txt}
+file to the terminal.
+
+\worksheetexercise From the length of the file, determine how many
+duplicates are in the file.
+
+\worksheetexercise Using the \texttt{uniq} script, try to remove
+duplicates. Why does the naive approach not work?
+
+\worksheetexercise Determine a way to create a new file,
+\texttt{us\_states\_uniq.txt} where each US state only appears once.
+
+\worksheetexercise Append the last alphabetical state to the
+\texttt{us\_states\_uniq.txt}.
+
+\worksheetexercise Check if \texttt{uniq} works with the file now.
+
+
+\pagebreak
+\worksheetsection{Shell Scripts and Pipelines}
+
+\worksheetexercise Using a \texttt{for} loop, find the top 3 lines of
+each of the files:
+
+\begin{itemize}
+    \item \texttt{expectpayoff\_100\_1\_0.2.mesh}
+    \item \texttt{expectpayoff\_200\_1\_0.4.mesh}
+    \item \texttt{expectpayoff\_400\_2\_0.2.mesh}
+\end{itemize}
+
+\worksheetexercise Using a combination of \texttt{head} and
+\text{tail}, output lines 81--100.
+
+\worksheetexercise Using the \texttt{for} loop we rename the above
+files to have the prefix \texttt{sample\_}
+
+\worksheetexercise Use a variable to allow the creation of prefix
+variable to allow the setting of the prefix at a single location.
+
+\worksheetexercise Use the \texttt{history} command to repeat the
+previous renaming. This should not alter the files you have renamed.
+
+\worksheetexercise Nest the loops to allow the renaming of all files
+with the \texttt{\_200\_} and \texttt{\_2\_} in the filename.
+
+\worksheetexercise Using the \texttt{echo} command, create a dry run
+script that renames all \texttt{200} and \texttt{0.2} files to a given
+prefix.
+
+\worksheetexercise Create a shell script called \texttt{middle.sh}
+that returns lines 81--100 from any input script.
+
+\worksheetexercise Rewrite the script so that it takes the starting
+line and the number of subsequent lines as input parameters.
+
+
+\pagebreak
+\worksheetsection{Finding Files}
+
+\worksheetexercise Find all states in the US that contain the word
+`North' in them.
+
+\worksheetexercise Using the sorted file of US states, use the
+\texttt{-n} command-line argument to find the line numbers of the
+above states.
+
+\worksheetexercise Using extended regular expressions, find all US
+states that have more than one word in their name.
+
+\worksheetexercise Find all PDF files on your filesystem.
+
+
+
+\end{document}

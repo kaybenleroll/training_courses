@@ -27,7 +27,7 @@
   \vspace{3mm} \noindent
 }
 
-\title{Software Development Principles for Research - Principles of Probability with Python/R}
+\title{Software Development Principles for Statistical Modelling\\Introduction to Modeling}
 \author{Mick Cooney\\mickcooney@gmail.com}
 
 \begin{document}
@@ -56,7 +56,7 @@ set.seed(42);
 \end{center}
 
 \noindent
-Code is available in the \texttt{sdpr_intro} directory.
+Code is available in the \texttt{sdpsm\_intro} directory.
 
 \worksheetbreak
 Content in this workshop is based on the 'Software Carpentry' course:
