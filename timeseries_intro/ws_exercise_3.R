@@ -1,0 +1,59 @@
+###
+### Worksheet Exercise 3.1
+###
+
+source('setup_data.R', echo = TRUE);
+
+AP.ts.decomp <- decompose(AP.ts);
+
+str(AP.ts.decomp);
+
+plot(AP.ts.decomp);
+###
+### Worksheet Exercise 3.2
+###
+
+source('setup_data.R', echo = TRUE);
+
+beer.ts <- ts(CBE.df$beer, start = 1958, freq = 12);
+choc.ts <- ts(CBE.df$choc, start = 1958, freq = 12);
+elec.ts <- ts(CBE.df$elec, start = 1958, freq = 12);
+
+beer.ts.decomp <- decompose(beer.ts);
+choc.ts.decomp <- decompose(choc.ts);
+elec.ts.decomp <- decompose(elec.ts);
+
+cbe.ts <- cbind(beer.ts, choc.ts, elec.ts);
+
+plot(cbe.ts);
+
+plot(beer.ts.decomp);
+plot(choc.ts.decomp);
+plot(elec.ts.decomp);
+###
+### Worksheet Exercise 3.3
+###
+
+source('setup_data.R', echo = TRUE);
+
+AP.ts.mult.decomp <- decompose(AP.ts, type = 'multiplicative');
+
+plot(AP.ts.mult.decomp);
+###
+### Worksheet Exercise 3.4
+###
+
+source('setup_data.R', echo = TRUE);
+
+AP.ts.stl <- stl(AP.ts, s.window = 'periodic');
+
+str(AP.ts.stl);
+
+plot(AP.ts.stl);
+
+### To compare the two, I give an example of comparing the two calculated trend
+plot.df <- melt(cbind(decomp = AP.ts.decomp$trend,  stl = AP.ts.stl$time.series[, 'trend']));
+
+head(plot.df);
+
+qplot(Var1, value, data = plot.df, colour = Var2, geom = 'line', ylim = c(0, 500));
