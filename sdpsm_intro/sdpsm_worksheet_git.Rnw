@@ -35,19 +35,19 @@
 \maketitle
 
 <<init, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, message=FALSE>>=
-opts_knit$set(root.dir = ".");
+opts_knit$set(root.dir = ".")
 
-opts_chunk$set(fig.path = './');
-opts_chunk$set(fig.align = 'center');
-opts_chunk$set(out.width  = '18cm');
-opts_chunk$set(out.height = '10cm');
+opts_chunk$set(fig.path = './')
+opts_chunk$set(fig.align = 'center')
+opts_chunk$set(out.width  = '18cm')
+opts_chunk$set(out.height = '10cm')
 
-opts_chunk$set(size = 'scriptsize');
+opts_chunk$set(size = 'scriptsize')
 
-require(data.table);
-require(ggplot2);
+require(data.table)
+require(ggplot2)
 
-set.seed(42);
+set.seed(42)
 @
 
 \noindent
@@ -65,6 +65,73 @@ Content in this workshop is based on the 'Software Carpentry' course:
 
 \pagebreak
 \worksheetsection{Introduction}
+
+\pagebreak
+\worksheetsection{Git Basics}
+
+\noindent
+In this part of the workshop we introduce the concept of version control and how to set up and use \texttt{git}
+
+
+\worksheetexercise Create a new directory called \texttt{test\_repo} in your working directory and create a git repo.
+
+\worksheetexercise Using \texttt{git config}, configure your name and email address.
+
+\worksheetexercise Create a text file called \texttt{personal\_details.txt}. In this file add your name and phone number.
+
+\worksheetexercise Check the repo status using \texttt{git status} and commit your changes to the repo.
+
+\worksheetexercise Investigate the log and ensure your changes committed properly.
+
+\worksheetexercise Add a new file called \texttt{home\_address.txt} and write your home address into it. Commit your changes and check the commit was performed properly.
+
+
+\pagebreak
+\worksheetsection{Explore History}
+
+\worksheetexercise Add the contents of the address file into the details file and delete the address file from the repo. Ensure all changes are committed properly.
+
+\worksheetexercise Look through the logs to get the commit hashes for the first commit and revert the file to that version.
+
+\worksheetexercise Reset the files on the file system to the most recent version using \texttt{git reset}.
+
+\worksheetexercise Look at the differences in the files between the current version.
+
+\worksheetexercise Add your nationality to the personal details file. Check the status of the repo and stash the changes with \texttt{git stash}
+
+
+
+\pagebreak
+\worksheetsection{Branching and Merging}
+
+\worksheetexercise List the branches in the repo, there should just be a single branch.
+
+\worksheetexercise Create a new branch, adding your education history to a new file and commit your changes.
+
+\worksheetexercise Switch back to the previous branch and look at what files are present.
+
+\worksheetexercise Checkout the new branch and ensure the files are correct.
+
+\worksheetexercise Merge the new branch into the original one using \texttt{git merge}
+
+
+\pagebreak
+\worksheetsection{Miscellanous}
+
+\worksheetexercise Add a new directory called data, and create a \texttt{data.csv} file in it.
+
+\worksheetexercise Look at the status of the files in the git repo
+
+\worksheetexercise Create a \texttt{.gitignore} file to ensure the CSV file is ignored by git
+
+\worksheetexercise Look at the one-line version of the log using \texttt{git log}
+
+\worksheetexercise Create an alias for the following command
+
+\begin{center}
+\texttt{git log --graph --decorate --pretty=oneline --abbrev-commit}
+\end{center}
+
 
 
 

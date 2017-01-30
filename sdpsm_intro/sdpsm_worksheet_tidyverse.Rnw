@@ -1,0 +1,140 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{hyperref}
+
+
+\newcounter{wssection}
+\newcounter{wsexercise}[wssection]
+
+
+\newcommand{\worksheetsection}[1]{
+  \vspace{10mm}
+  \stepcounter{wssection}
+  \noindent \Large \textbf{\thewssection. #1} \normalsize
+  \vspace{3mm}
+}
+
+
+\newcommand{\worksheetexercise}{
+  \stepcounter{wsexercise}
+  \vspace{5mm} \noindent \textbf{Exercise \thewssection.\thewsexercise \;}
+}
+
+\newcommand{\worksheetbreak} {
+  \vspace{3mm} \noindent
+}
+
+\title{Software Development Principles for Statistical Modelling\\Basic Data Manipulation in R}
+\author{Mick Cooney\\mickcooney@gmail.com}
+
+\begin{document}
+
+\maketitle
+
+<<init, echo=FALSE, cache=FALSE, results='hide', warning=FALSE, message=FALSE>>=
+opts_knit$set(root.dir = ".")
+
+opts_chunk$set(fig.path = './')
+opts_chunk$set(fig.align = 'center')
+opts_chunk$set(out.width  = '18cm')
+opts_chunk$set(out.height = '10cm')
+
+opts_chunk$set(size = 'scriptsize')
+
+library(tidyverse)
+
+set.seed(42)
+@
+
+\noindent
+\begin{center}
+\url{https://www.github.com/kaybenleroll/training_courses}.
+\end{center}
+
+\noindent
+Code is available in the \texttt{sdpsm\_intro} directory.
+
+\worksheetbreak
+Content in this workshop is based on the 'Software Carpentry' course:
+\url{http://software-carpentry.org/}
+
+
+\pagebreak
+\worksheetsection{Introduction}
+
+
+\pagebreak
+\worksheetsection{Introduction to \texttt{dplyr}}
+
+
+\noindent
+Do the following exercises by manipulating the tibbles. Your output should be in the form of a tibble.
+
+\worksheetexercise Load the \texttt{mpg} data into memory.
+
+\worksheetexercise Calculate the average mileage for both city and highway driving across the dataset.
+
+\worksheetexercise Calculate the mileage by transmission type.
+
+\worksheetexercise Calculate the average mileage by car year.
+
+\worksheetexercise Which car manufacture has the most fuel economy overall?
+
+\worksheetexercise Append two new columns to the tibble, giving the mileage in kilometres.
+
+\worksheetexercise Append two new columns to show the mileage in kilometres per litre.
+
+\worksheetexercise Create a new version of the tibble that contains the model, the year and km/l fuel efficiency.
+
+
+
+\pagebreak
+\worksheetsection{Reading and Manipulating Data Files}
+
+\worksheetexercise Load the data from the file \texttt{SPY\_data\_2007.csv} into a tibble.
+
+\worksheetexercise Reload the data so that the year column is read in as a string.
+
+\worksheetexercise Load all the SPY data across all the years into a single file.
+
+\worksheetexercise Write the data out as a single file, but only with the columns \texttt{symbol}, \texttt{date} and \texttt{adj\_close}.
+
+
+\pagebreak
+\worksheetsection{Data Visualisation with \texttt{ggplot2}}
+
+\worksheetexercise Create a line plot of the SPY adjusted close price.
+
+\worksheetexercise Create a line plot of the SPY data adjusted close price from 2015 onwards.
+
+\worksheetexercise Create boxplots of the city fuel efficiency of the \texttt{mpg} cars by manufacturer.
+
+\worksheetexercise Facet the above boxplots by cylinder count
+
+\worksheetexercise Create a density plot of the overall highway fuel efficiency.
+
+\worksheetexercise Create multiple fuel efficiency plots facetted by manufacturer. The city and highway efficiencies should be on the same plot with different colours.
+
+\worksheetexercise Redo all the above plots, but add labels to the $x-$ and $y-$ axes and add a title to each plot.
+
+
+\pagebreak
+\worksheetsection{Introduction to \texttt{rmarkdown}}
+
+\worksheetexercise Create an rmarkdown document for all the work in this module.
+
+\worksheetexercise Give the document an appropriate title.
+
+\worksheetexercise Add your name and the current date to the heading of the document.
+
+\worksheetexercise Render this document as both a HTML and a PDF document.
+
+
+
+
+
+
+\end{document}

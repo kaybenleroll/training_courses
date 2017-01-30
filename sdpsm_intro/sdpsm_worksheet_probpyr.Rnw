@@ -67,6 +67,46 @@ Content in this workshop is based on the 'Software Carpentry' course:
 \worksheetsection{Introduction}
 
 
+\pagebreak
+\worksheetsection{Introduction to Probability}
+
+\worksheetexercise Generate 100 random uniform numbers between 0 and 1.
+
+\worksheetexercise Generate 100 random numbers distributed as a normal distribution with mean 0 and standard deviation 1.
+
+\worksheetexercise Generate 100 normally distributed numbers with mean 50 and standard deviation 10.
+
+\worksheetexercise Transform the standard normal numbers from the previous question and convert it to a distribution with mean 50, sd 10 and compare to the data generated directly.
+
+\worksheetexercise
+
+
+\pagebreak
+\worksheetsection{Principles of Probability}
+
+\worksheetexercise Using simulation, calculate the value of $\pi$. Estimate the error in your calculated value.
+
+\worksheetexercise Starting with a sample size of 10 and scaling in whatever way you wish, illustrate the \emph{Law of Large Numbers} by plotting the mean of the $(0,1)$ uniform distribution of data by sample size.
+
+\worksheetexercise Repeat the above exercise with the standard normal distribution.
+
+\worksheetexercise Repeat for the Cauchy distribution.
+
+\worksheetexercise Using the above distributions, illustrate the \texttt{Central Limit Theorem}.
+
+
+
+\pagebreak
+\worksheetsection{Exercises in Probability}
+
+
+\worksheetexercise
+
+
+
+
+
+
 
 
 \end{document}
