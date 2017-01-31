@@ -65,7 +65,7 @@ Content in this workshop is based on the 'Software Carpentry' course:
 \url{http://software-carpentry.org/}
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Shell Basics}
 
 \noindent
@@ -110,7 +110,7 @@ directory.
 appropriate way and save the output to \texttt{sorted\_lengths.txt}
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Shell Pipes and Filters}
 
 \worksheetexercise Using a pipe (the \texttt{|} character), create a
@@ -138,7 +138,7 @@ duplicates. Why does the naive approach not work?
 \worksheetexercise Check if \texttt{uniq} works with the file now.
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Shell Scripts and Pipelines}
 
 \worksheetexercise Using a \texttt{for} loop, find the top 3 lines of
@@ -176,7 +176,7 @@ that returns lines 81--100 from any input script.
 line and the number of subsequent lines as input parameters.
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Finding Files}
 
 \worksheetexercise Find all states in the US that contain the word

@@ -62,11 +62,7 @@ Content in this workshop is based on the 'Software Carpentry' course:
 \url{http://software-carpentry.org/}
 
 
-\pagebreak
-\worksheetsection{Introduction}
-
-
-\pagebreak
+%\pagebreak
 \worksheetsection{Introduction to \texttt{dplyr}}
 
 
@@ -91,7 +87,7 @@ Do the following exercises by manipulating the tibbles. Your output should be in
 
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Reading and Manipulating Data Files}
 
 \worksheetexercise Load the data from the file \texttt{SPY\_data\_2007.csv} into a tibble.
@@ -103,7 +99,7 @@ Do the following exercises by manipulating the tibbles. Your output should be in
 \worksheetexercise Write the data out as a single file, but only with the columns \texttt{symbol}, \texttt{date} and \texttt{adj\_close}.
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Data Visualisation with \texttt{ggplot2}}
 
 \worksheetexercise Create a line plot of the SPY adjusted close price.
@@ -121,7 +117,7 @@ Do the following exercises by manipulating the tibbles. Your output should be in
 \worksheetexercise Redo all the above plots, but add labels to the $x-$ and $y-$ axes and add a title to each plot.
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Introduction to \texttt{rmarkdown}}
 
 \worksheetexercise Create an rmarkdown document for all the work in this module.
