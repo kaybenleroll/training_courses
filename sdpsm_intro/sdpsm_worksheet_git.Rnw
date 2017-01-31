@@ -63,10 +63,7 @@ Content in this workshop is based on the 'Software Carpentry' course:
 \url{http://software-carpentry.org/}
 
 
-\pagebreak
-\worksheetsection{Introduction}
-
-\pagebreak
+%\pagebreak
 \worksheetsection{Git Basics}
 
 \noindent
@@ -86,7 +83,7 @@ In this part of the workshop we introduce the concept of version control and how
 \worksheetexercise Add a new file called \texttt{home\_address.txt} and write your home address into it. Commit your changes and check the commit was performed properly.
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Explore History}
 
 \worksheetexercise Add the contents of the address file into the details file and delete the address file from the repo. Ensure all changes are committed properly.
@@ -101,7 +98,7 @@ In this part of the workshop we introduce the concept of version control and how
 
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Branching and Merging}
 
 \worksheetexercise List the branches in the repo, there should just be a single branch.
@@ -115,7 +112,7 @@ In this part of the workshop we introduce the concept of version control and how
 \worksheetexercise Merge the new branch into the original one using \texttt{git merge}
 
 
-\pagebreak
+%\pagebreak
 \worksheetsection{Miscellanous}
 
 \worksheetexercise Add a new directory called data, and create a \texttt{data.csv} file in it.
