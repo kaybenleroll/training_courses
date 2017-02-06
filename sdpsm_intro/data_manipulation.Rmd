@@ -1,0 +1,259 @@
+---
+title: "Basic Data Manipulation in R"
+author: "Mick Cooney"
+date: "2/2/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+```
+
+# Introduction to dplyr
+
+## Exercise 1.1
+
+```{r load_data, echo=TRUE}
+data(mpg)
+
+print(mpg)
+```
+
+
+## Exercise 1.2
+
+```{r exercise_1_2, echo=TRUE}
+mpg %>%
+    summarise(mean_cty = mean(cty)
+             ,mean_hwy = mean(hwy)
+              )
+```
+
+
+## Exercise 1.3
+
+```{r exercise_1_3, echo=TRUE}
+mpg %>%
+    group_by(trans) %>%
+    summarise(mean_cty = mean(cty)
+             ,mean_hwy = mean(hwy)
+              )
+```
+
+
+## Exercise 1.4
+
+```{r exercise_1_4, echo=TRUE}
+mpg %>%
+    group_by(year) %>%
+    summarise(mean_cty = mean(cty)
+             ,mean_hwy = mean(hwy)
+              )
+```
+
+
+## Exercise 1.5
+
+```{r exercise_1_5, echo=TRUE}
+manu_fuelecon_tbl <- mpg %>%
+    group_by(manufacturer) %>%
+    summarise(mean_cty = mean(cty)
+             ,mean_hwy = mean(hwy)
+              )
+
+manu_fuelecon_tbl %>% arrange(mean_cty)
+
+manu_fuelecon_tbl %>% arrange(desc(mean_cty))
+```
+
+
+## Exercise 1.6
+
+```{r exercise_1_6, echo=TRUE}
+mpg_km_tbl <- mpg %>%
+    mutate(cty_km = cty * 1.60934
+          ,hwy_km = hwy * 1.60934)
+
+print(mpg_km_tbl)
+```
+
+
+## Exercise 1.7
+
+```{r exercise_1_7, echo=TRUE}
+mpg_kml_tbl <- mpg_km_tbl %>%
+    mutate(cty_kml = cty * 1.60934 / 3.78541
+          ,hwy_kml = hwy * 1.60934 / 3.78541)
+
+print(mpg_kml_tbl)
+```
+
+
+## Exercise 1.8
+
+```{r exercise_1_8, echo=TRUE}
+new_tbl <- mpg %>%
+    mutate(cty_kml = cty * 1.60934 / 3.78541
+          ,hwy_kml = hwy * 1.60934 / 3.78541
+           ) %>%
+    select(manufacturer, model, year, cty_kml, hwy_kml)
+
+print(new_tbl)
+```
+
+
+## Exercise 1.9
+
+```{r exercise_1_9, echo=TRUE}
+efficient_tbl <- mpg %>%
+    mutate(cty_kml = cty * 1.60934 / 3.78541
+          ,hwy_kml = hwy * 1.60934 / 3.78541
+           ) %>%
+    select(manufacturer, model, year, cty_kml, hwy_kml) %>%
+    filter(cty_kml >= 7.5)
+
+print(efficient_tbl)
+```
+
+
+## Exercise 1.10
+
+```{r exercise_1_10, echo=TRUE}
+efficient_tbl <- mpg %>%
+    mutate(cty_kml = cty * 1.60934 / 3.78541
+          ,hwy_kml = hwy * 1.60934 / 3.78541
+           ) %>%
+    select(manufacturer, model, year, cty_kml, hwy_kml) %>%
+    filter(cty_kml >= 7.5
+          ,hwy_kml >= 12)
+
+print(efficient_tbl)
+```
+
+
+# Reading and Manipulating Data Files
+
+## Exercise 2.1
+
+```{r exercise_2_1, echo=TRUE}
+spy_2007_tbl <- read_csv('data/tidyverse/SPY_data_2007.csv')
+
+spy_2007_tbl %>% glimpse
+```
+
+
+## Exercise 2.2
+
+```{r exercise_2_2, echo=TRUE}
+spy_coltypes <- cols(
+    data_year = col_character()
+)
+
+spy_2007_tbl <- read_csv('data/tidyverse/SPY_data_2007.csv', col_types = spy_coltypes)
+
+spy_2007_tbl %>% glimpse
+```
+
+
+## Exercise 2.3
+
+```{r exercise_2_3, echo=TRUE}
+spy_files <- dir("data/tidyverse", pattern = '\\.csv', full.names = TRUE)
+
+spy_data_tbl <- spy_files %>%
+    map(read_csv, col_types = spy_coltypes) %>%
+    bind_rows %>%
+    arrange(date)
+
+spy_data_tbl %>% glimpse
+```
+
+
+## Exercise 2.4
+
+```{r exercise_2_4, echo=TRUE}
+spy_data_tbl %>%
+    mutate(symbol    = 'SPY'
+          ,adj_close = adjusted_close) %>%
+    select(symbol, date, adj_close) %>%
+    write_csv(path = 'SPY_full.csv')
+```
+
+
+# Data Visualisation with ggplot2
+
+## Exercise 3.1
+
+```{r exercise_3_1, echo=TRUE}
+ggplot(spy_data_tbl) +
+    geom_line(aes(x = date, y = adjusted_close)) +
+    expand_limits(y = 0) +
+    xlab("Date") +
+    ylab("Adjusted Close Price") +
+    ggtitle("Line Plot for SPY Adjusted Close Price from 2007-2016")
+
+```
+
+
+## Exercise 3.2
+
+```{r exercise_3_2, echo=TRUE}
+ggplot(spy_data_tbl %>% filter(date >= as.Date("2015-01-01"))) +
+    geom_line(aes(x = date, y = adjusted_close)) +
+    expand_limits(y = 0) +
+    xlab("Date") +
+    ylab("Adjusted Close Price") +
+    ggtitle("Line Plot for SPY Adjusted Close Price from 2015-2016")
+```
+
+
+## Exercise 3.3
+
+```{r exercise_3_3, echo=TRUE}
+ggplot(mpg) +
+    geom_boxplot(aes(x = manufacturer, y = cty)) +
+    expand_limits(y = 0) +
+    xlab("Manufacturer") +
+    ylab("City Mileage per Gallon") +
+    ggtitle("Boxplot for City Mileage of Cars by Manufacturer") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+```
+
+
+## Exercise 3.4
+
+```{r exercise_3_4, echo=TRUE, fig.height=8, fig.width=11}
+ggplot(mpg) +
+    geom_boxplot(aes(x = manufacturer, y = cty)) +
+    facet_wrap(~ cyl) +
+    expand_limits(y = 0) +
+    xlab("Manufacturer") +
+    ylab("City Mileage per Gallon") +
+    ggtitle("Boxplot for City Mileage of Cars by Manufacturer") +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5))
+```
+
+
+## Exercise 3.5
+
+```{r exercise_3_5, echo=TRUE}
+ggplot(mpg) +
+    geom_density(aes(x = hwy)) +
+    xlab("Highway Mileage") +
+    ylab("Probability Density") +
+    ggtitle("Density Plots of Highway Mileage")
+```
+
+
+## Exercise 3.6
+
+```{r exercise_3_6, echo=TRUE, fig.height=8, fig.width=11}
+ggplot(mpg) +
+    geom_density(aes(x = hwy), colour = 'red') +
+    geom_density(aes(x = cty), colour = 'blue') +
+    facet_wrap(~ manufacturer, scales='free_y', ncol = 3)
+```
+
+

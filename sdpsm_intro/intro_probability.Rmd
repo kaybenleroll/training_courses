@@ -1,0 +1,276 @@
+---
+title: "Introductory Probability"
+author: "Mick Cooney"
+date: "Feb 02 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(actuar)
+
+set.seed(42)
+```
+
+# Introduction to Probability
+
+## Exercise 1.1
+
+```{r exercise_1_1, echo=TRUE}
+samples_unif <- runif(1000)
+
+ggplot() +
+    geom_histogram(aes(x = samples_unif), bins = 50)
+
+```
+
+
+## Exercise 1.2
+
+```{r exercise_1_2, echo=TRUE}
+samples_stdnorm <- rnorm(1000)
+
+ggplot() +
+    geom_histogram(aes(x = samples_stdnorm), bins = 50)
+```
+
+
+## Exercise 1.3
+
+```{r exercise_1_3, echo=TRUE}
+samples_norm <- rnorm(1000, 50, 10)
+
+ggplot() +
+    geom_histogram(aes(x = samples_norm), bins = 50)
+```
+
+
+## Exercise 1.3
+
+```{r exercise_1_4, echo=TRUE}
+samples_stdnorm_transform <- 10 * samples_stdnorm + 50
+
+ggplot() +
+    geom_density(aes(x = samples_stdnorm_transform), color = 'red') +
+    geom_density(aes(x = samples_norm), color = 'blue')
+```
+
+
+# Principles of Probability
+
+## Exercise 2.1
+
+```{r exercise_2_1, echo=TRUE}
+n_iter <- 10000
+
+x_val <- runif(n_iter)
+y_val <- runif(n_iter)
+
+point_dist <- sqrt(x_val^2 + y_val^2)
+
+inside_count <- sum(point_dist <= 1)
+
+inside_prop <- (inside_count / n_iter)
+
+pi_val <- 4 * inside_prop
+
+print(pi_val)
+```
+
+
+## Exercise 2.2
+
+```{r exercise_2_2, echo=TRUE}
+calculate_sample_size_mean <- function(N) {
+    mean(runif(N))
+}
+
+sample_size <- c(10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000)
+
+data_tbl <- data_frame(
+    sample_size = sample_size
+   ,sample_mean = map_dbl(sample_size, calculate_sample_size_mean)
+)
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_continuous(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_log10(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+```
+
+
+## Exercise 2.3
+
+```{r exercise_2_3, echo=TRUE}
+calculate_sample_size_mean <- function(N) {
+    mean(rnorm(N))
+}
+
+sample_size <- c(10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000)
+
+data_tbl <- data_frame(
+    sample_size = sample_size
+   ,sample_mean = map_dbl(sample_size, calculate_sample_size_mean)
+)
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_continuous(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_log10(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+```
+
+
+## Exercise 2.4
+
+```{r exercise_2_4, echo=TRUE}
+calculate_sample_size_mean <- function(N) {
+    mean(rpareto(N, 2, 1.5))
+}
+
+sample_size <- c(10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000)
+
+data_tbl <- data_frame(
+    sample_size = sample_size
+   ,sample_mean = map_dbl(sample_size, calculate_sample_size_mean)
+)
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_continuous(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_log10(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+```
+
+
+## Exercise 2.4a
+
+```{r exercise_2_4a, echo=TRUE}
+calculate_sample_size_mean <- function(N) {
+    mean(rpareto(N, 2, 0.5))
+}
+
+sample_size <- c(10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000)
+
+data_tbl <- data_frame(
+    sample_size = sample_size
+   ,sample_mean = map_dbl(sample_size, calculate_sample_size_mean)
+)
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_continuous(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_log10(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+```
+
+
+## Exercise 2.5
+
+```{r exercise_2_5, echo=TRUE}
+calculate_sample_size_mean <- function(N) {
+    mean(rpareto(N, 2, 2))
+}
+
+sample_size <- c(10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000)
+
+data_tbl <- data_frame(
+    sample_size = sample_size
+   ,sample_mean = map_dbl(sample_size, calculate_sample_size_mean)
+)
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_continuous(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_log10(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+```
+
+
+## Exercise 2.6
+
+```{r exercise_2_6, echo=TRUE}
+calculate_sample_size_mean <- function(N) {
+    mean(rcauchy(N, 0, 1))
+}
+
+sample_size <- c(10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000)
+
+data_tbl <- data_frame(
+    sample_size = sample_size
+   ,sample_mean = map_dbl(sample_size, calculate_sample_size_mean)
+)
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_continuous(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+
+
+ggplot(data_tbl) +
+    geom_line(aes(x = sample_size, y = sample_mean)) +
+    scale_x_log10(labels = scales::comma) +
+    xlab("Sample Size") +
+    ylab("Mean")
+```
+
+
+## Exercise 2.7
+
+```{r exercise_2_7, echo=TRUE}
+calculate_sample_size_mean <- function(N) {
+    mean(runif(N, 0, 1))
+}
+
+clt_sample <- replicate(10000, calculate_sample_size_mean(3))
+
+ggplot() +
+    geom_density(aes(x = clt_sample))
+```
+
+
